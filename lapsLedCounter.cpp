@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <json.hpp>
+#include "json.hpp"
 #include <string>
 #include <unordered_map>
 
@@ -72,12 +72,12 @@ int main() {
     for (const auto& lapEntry : j["lapData"]) {
         position++;
         for (int lapNum = 1; lapNum <= lapsCompleted; lapNum++) {
-            string lap_to_check = "lap_" + to_string(lapNum);
-            if (lapEntry.contains(lap_to_check)) {
-                if (teamIdClassMap[lapEntry[lap_to_check]["group_id"]] == targetClass) {
+            string lapToCheck = "lap_" + to_string(lapNum);
+            if (lapEntry.contains(lapToCheck)) {
+                if (teamIdClassMap[lapEntry[lapToCheck]["group_id"]] == targetClass) {
                     if (leaderLapNumPositionMap[lapNum] > position) {
                         leaderLapNumPositionMap[lapNum] = position;
-                        leaderLapNumIdMap[lapNum] = lapEntry[lap_to_check]["group_id"];
+                        leaderLapNumIdMap[lapNum] = lapEntry[lapToCheck]["group_id"];
                     }
                 }
             }
