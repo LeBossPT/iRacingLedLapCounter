@@ -55,6 +55,12 @@ int main() {
 
     cout << "\nEnter the 6-digit team ID of which you want to count the led laps: ";
     cin >> targetTeamId;
+    if (cin.fail() || targetTeamId > 999999 || targetTeamId < 100000) {
+        cerr << "Sorry, I cannot read that. Make sure you entered only 6-digits" << endl;
+        cin.clear();
+        return 1; // EXIT ERROR
+    }
+
     if (!teamIdClassMap.contains(-targetTeamId)) {
         cout << "Invalid team selected!" << endl;
         return 1;
